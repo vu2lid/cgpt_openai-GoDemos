@@ -23,11 +23,14 @@ func main() {
 	body := strings.NewReader(`{
         "model": "text-davinci-003",
         "prompt": "` + prompt + `",
-	"temperature": 0.5,
+	    "temperature": 0.5,
         "max_tokens": 50,
         "n": 3,
 	"stop": "\n"
     }`)
+
+	fmt.Printf("Request sent was: %s\n\n", body)
+
 	// Set up the HTTP request with the API key in the headers
 	req, err := http.NewRequest("POST", "https://api.openai.com/v1/completions", body)
 	if err != nil {

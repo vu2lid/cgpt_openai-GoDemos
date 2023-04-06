@@ -28,6 +28,8 @@ func main() {
         ]
     }`)
 
+	fmt.Printf("Request sent was: %s\n\n", body)
+
 	// Set up the HTTP request with the API key in the headers
 	req, err := http.NewRequest("POST", "https://api.openai.com/v1/chat/completions", body)
 	if err != nil {
