@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	// Replace "YOUR_API_KEY" with your OpenAI API key
+	// Replace "OPENAI_API_KEY" with your OpenAI API key
 	// apiKey := "OPENAI_API_KEY"
 	// OR define as an environment variable OPENAI_API_KEY
 	apiKey := os.Getenv("OPENAI_API_KEY")
@@ -40,7 +40,7 @@ func main() {
 		return
 	}
 
-	fmt.Println("Request sent was: ", string(jsonData), "\n")
+	fmt.Println("Request sent was: %s", string(jsonData))
 
 	body := strings.NewReader(string(jsonData))
 
@@ -83,8 +83,19 @@ func main() {
 	fmt.Println(string(prettyJson))
 }
 
+// The CSV data table given below used for training comes from:
+// https://en.wikipedia.org/wiki/Imperial_units
 func generatePrompt(question string) string {
-	return fmt.Sprintf("Read the CSV data given below and answer the question %s.\n\nUnit,Imperial ounces,Imperial pints,Millilitres,Cubic inches,US ounces,US pints\nfluid ounce (fl oz),1 ,1/20 ,28.4130625 ,1.7339 ,0.96076 ,0.060047\ngill (gi),5 ,1/4 ,142.0653125 ,8.6694 ,4.8038 ,0.30024\npint (pt),20 ,1 ,568.26125 ,34.677 ,19.215 ,1.2009\nquart (qt),40 ,2 ,1136.5225 ,69.355 ,38.43 ,2.4019\ngallon (gal),160 ,8 ,4546.09 ,277.42 ,153.72 ,9.6076\n", question)
+	return `Read the CSV data given below and answer the question: ` + question + `.
+
+Unit,Imperial ounces,Imperial pints,Millilitres,Cubic inches,US ounces,US pints
+fluid ounce (fl oz),1 ,1/20 ,28.4130625 ,1.7339 ,0.96076 ,0.060047
+gill (gi),5 ,1/4 ,142.0653125 ,8.6694 ,4.8038 ,0.30024
+pint (pt),20 ,1 ,568.26125 ,34.677 ,19.215 ,1.2009
+quart (qt),40 ,2 ,1136.5225 ,69.355 ,38.43 ,2.4019
+gallon (gal),160 ,8 ,4546.09 ,277.42 ,153.72 ,9.6076
+
+`
 }
 
 func generateQuestion(scaleFactor float64, quantity float64, fromUnit string, toUnit string) string {
