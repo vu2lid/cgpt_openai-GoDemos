@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	// Replace "YOUR_API_KEY" with your OpenAI API key
+	// Replace "OPENAI_API_KEY" with your OpenAI API key
 	// apiKey := "OPENAI_API_KEY"
 	// OR define as an environment variable OPENAI_API_KEY
 	apiKey := os.Getenv("OPENAI_API_KEY")
