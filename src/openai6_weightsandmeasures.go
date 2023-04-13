@@ -99,5 +99,5 @@ gallon (gal),160 ,8 ,4546.09 ,277.42 ,153.72 ,9.6076
 }
 
 func generateQuestion(scaleFactor float64, quantity float64, fromUnit string, toUnit string) string {
-	return fmt.Sprintf("Scale multiply with a scale factor of %.2f and convert %.2f %s to %s", scaleFactor, quantity, fromUnit, toUnit)
+	return fmt.Sprintf("Multiply with a scale factor of %.2f and convert %.2f %s to %s", scaleFactor, quantity, fromUnit, toUnit)
 }
