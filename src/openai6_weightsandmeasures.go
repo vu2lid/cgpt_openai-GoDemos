@@ -40,7 +40,7 @@ func main() {
 		return
 	}
 
-	fmt.Println("Request sent was: %s", string(jsonData))
+	fmt.Println("Request sent was: ", string(jsonData))
 
 	body := strings.NewReader(string(jsonData))
 
